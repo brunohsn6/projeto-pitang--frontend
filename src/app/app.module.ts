@@ -10,13 +10,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { HighlightDirective } from './shared/highlight.directive';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MovieDetailComponent } from './components/movie/movie-detail/movie-detail.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     TvshowComponent,
     MovieComponent,
-    HighlightDirective
+    HighlightDirective,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,

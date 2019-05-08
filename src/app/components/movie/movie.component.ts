@@ -39,7 +39,7 @@ export class MovieComponent implements OnInit {
   }
 
   edit(movie : Movie){
-    this.router.navigate(['/details', movie.id])
+    this.router.navigate(['movies/details', movie.id])
   }
   changeTitleState(){
     this.isTitleChecked = !this.isTitleChecked;
