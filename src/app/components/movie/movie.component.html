@@ -1,0 +1,43 @@
+<div class="col-12">
+  <div class="text text-style">FILTER BY:</div>
+    <div class="custom-control custom-checkbox custom-control-inline">
+      <input type="checkbox" class="custom-control-input" (click) = "changeTitleState()" id="checkTitle">
+      <label class="custom-control-label text-style" for="checkTitle">TITLE</label>
+    </div>
+    <div class="custom-control custom-checkbox custom-control-inline">
+        <input type="checkbox" class="custom-control-input" (click) = "changeYearState()" id="checkYear">
+        <label class="custom-control-label text-style" for="checkYear">YEAR</label>
+    </div>
+    <div class="custom-control custom-checkbox custom-control-inline">
+        <input type="checkbox" class="custom-control-input" (click) = "changeLanguageState()" id="checkLanguage">
+        <label class="custom-control-label text-style" for="checkLanguage">LANGUAGE</label>
+    </div>
+    <div *ngIf="isTitleChecked">
+        <input type="text" class="form-control input-align" [(ngModel)]="titleSearch" (keyup)="filter()"
+        placeholder="Search your movie by title...">&nbsp;
+    </div>
+    <div *ngIf="isYearChecked">
+        <input type="number" class="form-control input-align" [(ngModel)]="yearSearch" (keyup)="filter()"
+        placeholder="Search your movie by year ...">&nbsp;
+    </div>
+    <div *ngIf="isLanguageChecked">
+        <input type="text" class="form-control input-align" [(ngModel)]="languageSearch" (keyup)="filter()"
+        placeholder="Search your movie by language...">&nbsp;
+    </div>
+    
+
+  <div class="card-columns">
+    <div class="card bg-dark text-white" (click)="edit(movie)" *ngFor="let movie of movies | paginate: { itemsPerPage: 3, currentPage: actualPage}; let i = index">
+      <img class="card-img-top" src="https://image.tmdb.org/t/p/w250_and_h141_face{{ movie.backdropPath }}"
+        alt="_blank" />
+      <div highlight class="card-body" (click)="edit(movie)">
+        <p class="card-title">{{ movie.title }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<pagination-controls (pageChange)="actualPage = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+
+
+
+
