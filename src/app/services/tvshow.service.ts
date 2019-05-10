@@ -31,6 +31,6 @@ export class TvshowService {
 
   delete(tvshow : Tvshow){
     // console.log(this.APIUrl+'/delete?id='+movie.id);
-    this.http.delete(this.APIUrl+'/delete?id='+tvshow.id);
+    return this.http.delete(`${this.APIUrl}/${tvshow.id}`);
   }
 }

@@ -25,7 +25,8 @@
           <p class="card-title text-justify"><strong>Actors:</strong></p>
           <div class="d-inline-block" *ngFor="let actor of movie?.actors">
             <img id="actorlabel" class="card-img sticker"
-              src="https://image.tmdb.org/t/p/w250_and_h141_face{{ actor?.profile_path }}" alt=""> &nbsp;
+              src="https://image.tmdb.org/t/p/w250_and_h141_face{{ actor?.profile_path }}"
+              onerror = "this.src='./../../../assets/default-profile-pic.png'" alt=""> &nbsp;
             <label for="actorlabel">{{actor?.name}}</label>&nbsp;
           </div>
         </section>
@@ -33,8 +34,8 @@
           <p class="card-title text-justify"><strong>Authors:</strong></p>
           <div class="card-column d-inline-block" *ngFor="let author of movie?.authors">
             <img id="actorlabel" class="card-img sticker"
-              srcset="https://image.tmdb.org/t/p/w250_and_h141_face{{ author?.profile_path }}"
-              src="../../../../assets/default-profile-pic.png" alt="">&nbsp;
+              src="https://image.tmdb.org/t/p/w250_and_h141_face{{ author?.profile_path }}"
+              onerror = "this.src='./../../../assets/default-profile-pic.png'" alt="">&nbsp;
             <label for="actorlabel">{{author?.name}}</label>&nbsp;
           </div>
         </section>
@@ -42,7 +43,8 @@
           <p class="card-title text-justify"><strong>Directors:</strong></p>
           <div class="d-inline-block" *ngFor="let director of movie?.directors">
             <img id="actorlabel" class="card-img sticker"
-              src="https://image.tmdb.org/t/p/w250_and_h141_face{{ director?.profile_path }}" alt="">&nbsp;
+              src="https://image.tmdb.org/t/p/w250_and_h141_face{{ director?.profile_path }}" 
+              onerror = "this.src='./../../../assets/default-profile-pic.png'" alt="">&nbsp;
             <label for="actorlabel">{{director?.name}}</label>&nbsp;
           </div>
         </section>

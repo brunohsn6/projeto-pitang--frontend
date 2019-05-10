@@ -20,8 +20,9 @@
   
     <br>
     <div class="card-columns">
-      <div class="card bg-dark text-white" (click)="edit(tvshow)" *ngFor="let tvshow of tvshows | paginate: { itemsPerPage: 3, currentPage: actualPage}; let i = index">
+      <div class="card bg-dark text-white" (click)="edit(tvshow)" *ngFor="let tvshow of tvshows | paginate: { itemsPerPage: 6, currentPage: actualPage}; let i = index">
         <img class="card-img-top" src="https://image.tmdb.org/t/p/w250_and_h141_face{{ tvshow.backdropPath }}"
+        onerror = "this.src='./../../../assets/default-profile-pic.png'"
           alt="_blank" />
         <div highlight class="card-body" (click)="edit(tvshow)">
           <p class="card-title">{{ tvshow.title }}</p>

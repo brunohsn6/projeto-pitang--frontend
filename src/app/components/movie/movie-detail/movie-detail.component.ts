@@ -64,7 +64,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
   onSave(){
-    this.movieService.update(this.movie);
+    this.movieService.update(this.movie, this.movie.id).subscribe();
     this.modalService.dismissAll("saved");
   }
 
@@ -81,7 +81,7 @@ export class MovieDetailComponent implements OnInit {
   }
   onDelete(){
     if(window.confirm("você tem certeza que deseja excluir "+this.movie.title+"?")){
-      this.movieService.delete(this.movie.id);
+      this.movieService.delete(this.movie.id).subscribe();
     }
     
   }
