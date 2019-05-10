@@ -1,31 +1,26 @@
 <div class="col-12">
-    <div class="text text-style">FILTER BY:</div>
-    <div class="custom-control custom-checkbox custom-control-inline">
-      <input type="checkbox" class="custom-control-input" (click) = "changeTitleState()" id="checkTitle">
-      <label class="custom-control-label text-style" for="checkTitle">TITLE</label>
+    <div class="card card-color">
+        <div class="card-header">
+          <h6 class="card-title header-color">FILTER BY:</h6>
+          <div class="card-body">
+                    <input type="text" class="form-control input-align" [(ngModel)]="titleSearch" 
+                    placeholder="Search your tvshow by title...">
+               
+                    <input type="number" class="form-control input-align" [(ngModel)]="yearSearch"
+                    placeholder="Search your tvshow by year ...">
+               
+                    <input type="text" class="form-control input-align" [(ngModel)]="languageSearch"
+                    placeholder="Search your tvshow by language...">
+                    <br>
+                    <button type="button" class="btn btn-info btn-config" (click) = filter()>Search</button>
+                
+          </div>
+        </div>
     </div>
-    <div class="custom-control custom-checkbox custom-control-inline">
-        <input type="checkbox" class="custom-control-input" (click) = "changeYearState()" id="checkYear">
-        <label class="custom-control-label text-style" for="checkYear">YEAR</label>
-    </div>
-    <div class="custom-control custom-checkbox custom-control-inline">
-        <input type="checkbox" class="custom-control-input" (click) = "changeLanguageState()" id="checkLanguage">
-        <label class="custom-control-label text-style" for="checkLanguage">LANGUAGE</label>
-    </div>
-    <div *ngIf="isTitleChecked">
-        <input type="text" class="form-control input-align" [(ngModel)]="titleSearch" (keyup)="filter()"
-        placeholder="Search your tvshow by title...">&nbsp;
-    </div>
-    <div *ngIf="isYearChecked">
-        <input type="number" class="form-control input-align" [(ngModel)]="yearSearch" (keyup)="filter()"
-        placeholder="Search your tvshow by year ...">&nbsp;
-    </div>
-    <div *ngIf="isLanguageChecked">
-        <input type="text" class="form-control input-align" [(ngModel)]="languageSearch" (keyup)="filter()"
-        placeholder="Search your tvshow by language...">&nbsp;
-    </div>
+  
+    <br>
     <div class="card-columns">
-      <div class="card bg-dark text-white" (click)="goEdit(tvshow)" *ngFor="let tvshow of tvshows | paginate: { itemsPerPage: 3, currentPage: actualPage}; let i = index">
+      <div class="card bg-dark text-white" (click)="edit(tvshow)" *ngFor="let tvshow of tvshows | paginate: { itemsPerPage: 3, currentPage: actualPage}; let i = index">
         <img class="card-img-top" src="https://image.tmdb.org/t/p/w250_and_h141_face{{ tvshow.backdropPath }}"
           alt="_blank" />
         <div highlight class="card-body" (click)="edit(tvshow)">

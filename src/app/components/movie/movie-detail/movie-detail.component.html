@@ -1,22 +1,122 @@
 <div class="row">
-    <div class="col-12 col-md-4">
-      <div class="card">
-        <img class="card-img" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{ movie.poster_path }}" alt="">
-      </div>
-    </div>
-    &nbsp;
-    <div class="col-12 col-md-7">
-      <div class="card">
-        <div class="card-header">
-          <h5 class="card-title">{{ movie?.title }} ({{ movie?.release_date | date: 'yyyy'}})</h5>
-        </div>
-        <div class="card-body">
-          <p class="card-title text-justify"><strong>Sinopse:</strong> {{ movie?.overview }}</p>
-          
-         
-        </div>
-        <button type="button" class="btn btn-primary" (click) = "edit(movie)">Editar Filme</button>&nbsp;
-        <button type="button" class="btn btn-warning" onclick = "history.go(-1)">Voltar</button> 
-      </div>
+  <div class="col-12 col-md-4">
+    <div class="card">
+      <img class="card-img" src="https://image.tmdb.org/t/p/w250_and_h141_face{{ movie?.backdropPath }}" alt="">
     </div>
   </div>
+  &nbsp;
+  <div class="col-12 col-md-7">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">{{ movie?.title }} ({{ movie?.release_year | date: 'yyyy'}})</h5>
+      </div>
+      <div class="card-body">
+        <section>
+          <p class="card-title text-justify"><strong>Sinopsis:</strong> {{ movie?.description }}</p>
+        </section>
+        <section>
+          <p class="card-title text-justify"><strong>Genres:</strong></p>
+          <div id="genre-section" class="d-inline-block" *ngFor="let genre of movie?.genres">
+            <span class="badge badge-pill badge-primary">{{ genre?.name }}</span>
+          </div>
+        </section>
+        <br>&nbsp;
+        <section>
+          <p class="card-title text-justify"><strong>Actors:</strong></p>
+          <div class="d-inline-block" *ngFor="let actor of movie?.actors">
+            <img id="actorlabel" class="card-img sticker"
+              src="https://image.tmdb.org/t/p/w250_and_h141_face{{ actor?.profile_path }}" alt=""> &nbsp;
+            <label for="actorlabel">{{actor?.name}}</label>&nbsp;
+          </div>
+        </section>
+        <section>
+          <p class="card-title text-justify"><strong>Authors:</strong></p>
+          <div class="card-column d-inline-block" *ngFor="let author of movie?.authors">
+            <img id="actorlabel" class="card-img sticker"
+              srcset="https://image.tmdb.org/t/p/w250_and_h141_face{{ author?.profile_path }}"
+              src="../../../../assets/default-profile-pic.png" alt="">&nbsp;
+            <label for="actorlabel">{{author?.name}}</label>&nbsp;
+          </div>
+        </section>
+        <section>
+          <p class="card-title text-justify"><strong>Directors:</strong></p>
+          <div class="d-inline-block" *ngFor="let director of movie?.directors">
+            <img id="actorlabel" class="card-img sticker"
+              src="https://image.tmdb.org/t/p/w250_and_h141_face{{ director?.profile_path }}" alt="">&nbsp;
+            <label for="actorlabel">{{director?.name}}</label>&nbsp;
+          </div>
+        </section>
+
+
+      </div>
+      <p align="center">
+        <button type="button" class="btn btn-primary" (click)="open(content)">Edit Movie</button>&nbsp;
+        <button type="button" class="btn btn-danger" (click)="onDelete()">Delete Movie</button>&nbsp;
+        <button type="button" class="btn btn-warning" onclick="history.go(-1)">Voltar</button>
+      </p>
+
+    </div>
+  </div>
+</div>
+<!-- Modal de edição -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit Movie</h4>
+    <button type="button" class="close" aria-label="Close" (click)="onCancel()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editForm">
+      <label for="title">Title</label>
+      <input id="title" type="text" formControlName="title" [(ngModel)]=movie.title
+        class="form-control form-control-lg" />
+      <label for="description">Description</label>
+      <textarea id="description" type="text" formControlName="description" [(ngModel)]=movie.description
+        class="form-control form-control-lg">
+      </textarea>
+      <label for="duration">Duration</label>
+      <input id="duration" type="text" formControlName="duration" [(ngModel)]=movie.duration
+        class="form-control form-control-lg" />
+      <label for="genre">Genres</label>
+      <br>
+      <div id="genre" class="d-inline-block" *ngFor="let genre of movie?.genres, let i = index">
+        <button type="button" class="btn btn-info">
+          {{genre.name}} <span class="badge badge-light" (click)="popGenero(i)">X</span>
+        </button>&nbsp;
+      </div>
+      <br>
+      <label for="actors">Actors</label>
+      <br>
+      <div id="actors" class="d-inline-block" *ngFor="let actor of movie?.actors, let i = index">
+        <button type="button" class="btn btn-info">
+          {{actor.name}} <span class="badge badge-light" (click)="popActor(i)">X</span>
+        </button>&nbsp;
+      </div>
+      <br>
+      <label for="authors">Authors</label>
+      <br>
+      <div id="authors" class="d-inline-block" *ngFor="let author of movie?.authors, let i = index">
+        <button type="button" class="btn btn-info">
+          {{author.name}} <span class="badge badge-light" (click)="popAuthor(i)">X</span>
+        </button>&nbsp;
+      </div>
+      <br>
+      <label for="directors">Directors</label>
+      <br>
+      <div id="directors" class="d-inline-block" *ngFor="let director of movie?.directors, let i = index">
+        <button type="button" class="btn btn-info">
+          {{director.name}} <span class="badge badge-light" (click)="popDirector(i)">X</span>
+        </button>&nbsp;
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="onSave()">Save Changes</button>
+    <button type="button" class="btn btn-danger" (click)="onCancel()">Dismiss</button>
+  </div>
+</ng-template>
+
+
+<!-- <pre>{{closeResult}}</pre> -->

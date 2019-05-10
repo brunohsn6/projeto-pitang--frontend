@@ -5,20 +5,30 @@ import { Movie } from '../models/movie';
 @Injectable()
 export class MovieService {
   private APIUrl = 'http://localhost:8080/movies';
-
+  
   constructor(private http : HttpClient) { }
 
   getAll(){
     return this.http.get<Movie[]>(this.APIUrl+'/'); 
   }
 
-  filter(title : string, year : number, language : string){
+  filter(title, year, language){
     //faz nada ainda
-    console.log("tem nada ainda não!");
+    return this.http.get<Movie[]>(this.APIUrl+'/getByFiltering?language='+language+"&title="+title+"&year="+year);
   }
 
-  getById(id : number){
-    return this.http.get<Movie>(this.APIUrl+'/'+id);
+  update(movie : Movie){
+    this.http.put<Movie>(this.APIUrl+'/update', movie);
+  }
+
+  getById(id){
+
+    return this.http.get<Movie>(this.APIUrl+'/getById?id='+id);
+  }
+
+  delete(id){
+    // console.log(this.APIUrl+'/delete?id='+movie.id);
+    this.http.delete(this.APIUrl+'/delete?id='+id);
   }
 
 

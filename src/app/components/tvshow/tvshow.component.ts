@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tvshow } from 'src/app/models/tvshow';
 import { TvshowService } from 'src/app/services/tvshow.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tvshow',
@@ -18,7 +19,8 @@ export class TvshowComponent implements OnInit {
   isTitleChecked : boolean = false;
   isYearChecked : boolean = false;
   isLanguageChecked : boolean = false;
-  constructor(private tvshowService : TvshowService) { }
+  constructor(private tvshowService : TvshowService,
+    private router : Router) { }
 
   ngOnInit() {
     this.getAll();
@@ -30,13 +32,15 @@ export class TvshowComponent implements OnInit {
 
   filter(){
     this.tvshowService
-    .filter(this.titleSearch, this.yearSearch, this.languageSearch);
+    .filter(this.titleSearch, this.yearSearch, this.languageSearch)
+    .subscribe(response => this.tvshows = response);
+
 
     // .subscribe(response => this.movies = response);
   }
 
-  edit(tvhsow : Tvshow){
-    alert("editando "+tvhsow.title+" ...");
+  edit(tvshow : Tvshow){
+    this.router.navigate(['tvshows/details', tvshow.id]);
   }
 
   changeTitleState(){

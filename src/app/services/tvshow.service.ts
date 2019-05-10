@@ -15,7 +15,22 @@ export class TvshowService {
   }
   
   filter(title : string, year : number, language : string){
-    //faz nada ainda
-    console.log("tem nada ainda não!");
+    console.log("bate aqui")
+    return this.http.get<Tvshow[]>(this.APIUrl+'/getByFiltering?language='+language+"&title="+title+"&year="+year);
+
+  }
+
+  update(tvshow : Tvshow, id){
+    this.http.put<Tvshow>(this.APIUrl+'/update?id='+id, tvshow);
+  }
+
+  getById(id){
+
+    return this.http.get<Tvshow>(this.APIUrl+'/getById?id='+id);
+  }
+
+  delete(tvshow : Tvshow){
+    // console.log(this.APIUrl+'/delete?id='+movie.id);
+    this.http.delete(this.APIUrl+'/delete?id='+tvshow.id);
   }
 }

@@ -2,6 +2,20 @@ p{
     text-align: center
 }
 
+.btn-config{
+    float: right;
+    position: left;
+    width: 20%;
+
+}
+
+.card-color{
+    background-color: rgb(60, 67, 71);
+}
+
+.header-color{
+    color: rgb(255, 255, 255);
+}
 /* .font-color{
     
     background-color: rgb(79, 80, 82)

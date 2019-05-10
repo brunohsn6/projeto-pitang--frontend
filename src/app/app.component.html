@@ -13,20 +13,22 @@
       <li class="nav-item active" [routerLinkActive] = "['active']">
         <a class="nav-link" [routerLink] = "['movies']">Movies <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item active">
         <a class="nav-link" href="#"></a>
-      </li>
-      <!-- <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem>Action - 1</button>
-          <button ngbDropdownItem>Another Action</button>
-          <button ngbDropdownItem>Something else is here</button>
-        </div>
-      </div> -->
-      <li class="nav-item">
+      </li> -->
+      <li class="nav-item active">
         <a class="nav-link" [routerLink] = "['tvshows']">Tv Shows</a>
       </li>
+
+        <li class="nav-item active"> 
+            <a class="nav-link" [routerLink] = "['actors']">Actors</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" [routerLink] = "['authors']">Authors</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" [routerLink] = "['directors']">Directors</a>
+        </li>
     </ul>
   </div>
 </header>

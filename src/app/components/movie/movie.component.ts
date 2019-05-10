@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie';
 import { MovieService } from 'src/app/services/movie.service';
 import { Router } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-movie',
@@ -33,7 +35,8 @@ export class MovieComponent implements OnInit {
 
   filter(){
     this.movieService
-    .filter(this.titleSearch, this.yearSearch, this.languageSearch);
+    .filter(this.titleSearch, this.yearSearch, this.languageSearch)
+    .subscribe(response => this.movies = response);
 
     // .subscribe(response => this.movies = response);
   }
